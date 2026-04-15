@@ -1,0 +1,15 @@
+.git
+.gitignore
+__pycache__/
+venv/
+env/
+
+# Do not copy local database
+*.db
+
+# Do not copy local uploaded files
+uploads/*.pdf
+
+# Temp files
+error_log.txt
+find_tess.py

@@ -1,0 +1,31 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+venv/
+env/
+
+# Database (will be created on server)
+*.db
+
+# Uploads folder contents (not the folder itself)
+uploads/*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+error_log.txt
+tesseract_search.log
+
+# Temp files
+find_tess.py

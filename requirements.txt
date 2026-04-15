@@ -1,0 +1,7 @@
+flask
+flask-cors
+pytesseract
+pdf2image
+Pillow
+fpdf2
+gunicorn
