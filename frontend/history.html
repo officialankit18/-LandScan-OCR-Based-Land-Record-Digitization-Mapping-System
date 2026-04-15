@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse all previously processed land records with search, filter, and map view.">
+    <title>History — LandScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <span class="brand-text">LandScan</span>
+            </div>
+            <div class="sidebar-label">Main Menu</div>
+            <nav class="sidebar-nav">
+                <a href="/"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a href="/upload"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</a>
+                <a href="/results"><i class="fa-solid fa-file-lines"></i> Results</a>
+                <a href="/history" class="active"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/analytics"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+                <a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">LS</div>
+                    <div><div class="user-name">Admin</div><div class="user-role">System User</div></div>
+                </div>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search records...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-btn"><i class="fa-regular fa-bell"></i><span class="badge-dot"></span></button>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <div>
+                    <h1><i class="fa-solid fa-clock-rotate-left" style="color:var(--primary);margin-right:8px;"></i> Record History</h1>
+                    <p id="record-count">Loading records...</p>
+                </div>
+                <a href="/upload" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> New Upload</a>
+            </div>
+
+            <!-- Map -->
+            <div class="card" style="padding:0; overflow:hidden; margin-bottom:24px;">
+                <div class="map-wrapper" style="height:320px; border:none; box-shadow:none; margin:0;">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search by owner, plot, or file name...">
+                </div>
+                <select class="filter-select" id="filter-select">
+                    <option value="all">All Records</option>
+                    <option value="mapped">Has Coordinates</option>
+                    <option value="unmapped">No Coordinates</option>
+                </select>
+            </div>
+
+            <!-- Table -->
+            <div class="card" style="padding:0; overflow:hidden;">
+                <div class="data-table-wrapper">
+                    <table class="data-table" id="records-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="id">ID <i class="fa-solid fa-sort sort-icon"></i></th>
+                                <th class="sortable" data-sort="owner_name">Owner <i class="fa-solid fa-sort sort-icon"></i></th>
+                                <th class="sortable" data-sort="plot_number">Plot No. <i class="fa-solid fa-sort sort-icon"></i></th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>File</th>
+                                <th class="sortable" data-sort="timestamp">Date <i class="fa-solid fa-sort sort-icon"></i></th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records-tbody">
+                            <tr><td colspan="9" style="text-align:center; padding:32px; color:var(--text-light);">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination"></div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state" style="display:none;">
+                <div class="empty-icon"><i class="fa-solid fa-inbox"></i></div>
+                <h3>No Records Found</h3>
+                <p>Upload your first land record PDF to get started.</p>
+                <a href="/upload" class="btn btn-primary btn-sm" id="btn-upload-first"><i class="fa-solid fa-cloud-arrow-up"></i> Upload PDF</a>
+            </div>
+
+            <footer class="footer">
+                <p>LandScan — OCR-Based Land Record Digitization & Mapping System &copy; 2024</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/history.js"></script>
+</body>
+</html>

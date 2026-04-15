@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="System settings and configuration for the LandScan OCR platform.">
+    <title>Settings — LandScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <span class="brand-text">LandScan</span>
+            </div>
+            <div class="sidebar-label">Main Menu</div>
+            <nav class="sidebar-nav">
+                <a href="/"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a href="/upload"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</a>
+                <a href="/results"><i class="fa-solid fa-file-lines"></i> Results</a>
+                <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/analytics"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+                <a href="/settings" class="active"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">LS</div>
+                    <div><div class="user-name">Admin</div><div class="user-role">System User</div></div>
+                </div>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search settings...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-btn"><i class="fa-regular fa-bell"></i><span class="badge-dot"></span></button>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-gear" style="color:var(--primary);margin-right:8px;"></i> Settings</h1>
+                <p>System configuration and preferences</p>
+            </div>
+
+            <!-- General -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="settings-section">
+                    <h3><i class="fa-solid fa-sliders"></i> General</h3>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Application Name</div>
+                            <div class="setting-desc">Display name for the platform</div>
+                        </div>
+                        <span class="setting-value">LandScan</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Max Upload Size</div>
+                            <div class="setting-desc">Maximum file size allowed per upload</div>
+                        </div>
+                        <span class="setting-value">50 MB</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Allowed File Types</div>
+                            <div class="setting-desc">Supported document formats</div>
+                        </div>
+                        <span class="badge badge-primary">PDF</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Dark Mode</div>
+                            <div class="setting-desc">Switch to dark theme</div>
+                        </div>
+                        <div class="toggle" id="toggle-dark" onclick="this.classList.toggle('active')"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OCR Configuration -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="settings-section">
+                    <h3><i class="fa-solid fa-brain"></i> OCR Configuration</h3>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">OCR Engine</div>
+                            <div class="setting-desc">Text recognition engine used for processing</div>
+                        </div>
+                        <span class="setting-value">Tesseract OCR</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">OCR Language</div>
+                            <div class="setting-desc">Primary language for text extraction</div>
+                        </div>
+                        <span class="setting-value">English (eng)</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">DPI Setting</div>
+                            <div class="setting-desc">Resolution for PDF to image conversion</div>
+                        </div>
+                        <span class="setting-value">300 DPI</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Auto-extract Coordinates</div>
+                            <div class="setting-desc">Automatically parse GPS coordinates from text</div>
+                        </div>
+                        <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="settings-section">
+                    <h3><i class="fa-solid fa-database"></i> Database</h3>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Database Engine</div>
+                            <div class="setting-desc">Storage backend for extracted records</div>
+                        </div>
+                        <span class="setting-value">SQLite 3</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Database Path</div>
+                            <div class="setting-desc">Location of the database file</div>
+                        </div>
+                        <span class="setting-value" style="font-size:0.78rem;">backend/land_records.db</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Auto-backup</div>
+                            <div class="setting-desc">Automatically backup database daily</div>
+                        </div>
+                        <div class="toggle" onclick="this.classList.toggle('active')"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="card">
+                <div class="settings-section">
+                    <h3><i class="fa-solid fa-circle-info"></i> About</h3>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Application Version</div>
+                            <div class="setting-desc">Current release version</div>
+                        </div>
+                        <span class="badge badge-success">v1.0.0</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Server</div>
+                            <div class="setting-desc">Web server framework</div>
+                        </div>
+                        <span class="setting-value">Flask (Python)</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">Map Provider</div>
+                            <div class="setting-desc">Tile layer source for map visualization</div>
+                        </div>
+                        <span class="setting-value">OpenStreetMap</span>
+                    </div>
+                    <div class="settings-row">
+                        <div>
+                            <div class="setting-label">PDF Converter</div>
+                            <div class="setting-desc">Library used for PDF to image conversion</div>
+                        </div>
+                        <span class="setting-value">Poppler + pdf2image</span>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>LandScan — OCR-Based Land Record Digitization & Mapping System &copy; 2024</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="/js/sidebar.js"></script>
+</body>
+</html>

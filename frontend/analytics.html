@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analytics dashboard for OCR processing performance and record statistics.">
+    <title>Analytics — LandScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <span class="brand-text">LandScan</span>
+            </div>
+            <div class="sidebar-label">Main Menu</div>
+            <nav class="sidebar-nav">
+                <a href="/"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a href="/upload"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</a>
+                <a href="/results"><i class="fa-solid fa-file-lines"></i> Results</a>
+                <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/analytics" class="active"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+                <a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">LS</div>
+                    <div><div class="user-name">Admin</div><div class="user-role">System User</div></div>
+                </div>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-btn"><i class="fa-regular fa-bell"></i><span class="badge-dot"></span></button>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-chart-pie" style="color:var(--primary);margin-right:8px;"></i> Analytics</h1>
+                <p>Performance metrics and processing statistics for your land records</p>
+            </div>
+
+            <!-- KPI Stats -->
+            <div class="stats-grid" id="analytics-stats">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fa-solid fa-database"></i></div>
+                    <div class="stat-info">
+                        <h3 id="a-total">—</h3>
+                        <p>Total Records</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="stat-info">
+                        <h3 id="a-mapped">—</h3>
+                        <p>Mapped Records</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fa-solid fa-brain"></i></div>
+                    <div class="stat-info">
+                        <h3 id="a-avg-ocr">—</h3>
+                        <p>Avg OCR Time</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple"><i class="fa-solid fa-stopwatch"></i></div>
+                    <div class="stat-info">
+                        <h3 id="a-avg-proc">—</h3>
+                        <p>Avg Processing Time</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon cyan"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <h3 id="a-success">—</h3>
+                        <p>Success Rate</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h3 id="a-fastest">—</h3>
+                        <p>Fastest Processing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="chart-grid">
+                <!-- Line Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-chart-line"></i> Processing Time Trend</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart-line"></canvas>
+                    </div>
+                </div>
+
+                <!-- Pie Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Mapping Success Rate</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart-pie"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-chart-bar"></i> Uploads Over Time</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chart-bar"></canvas>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>LandScan — OCR-Based Land Record Digitization & Mapping System &copy; 2024</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/analytics.js"></script>
+</body>
+</html>

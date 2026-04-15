@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upload scanned land record PDF files for OCR processing and data extraction.">
+    <title>Upload — LandScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <span class="brand-text">LandScan</span>
+            </div>
+            <div class="sidebar-label">Main Menu</div>
+            <nav class="sidebar-nav">
+                <a href="/"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a href="/upload" class="active"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</a>
+                <a href="/results"><i class="fa-solid fa-file-lines"></i> Results</a>
+                <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/analytics"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+                <a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">LS</div>
+                    <div><div class="user-name">Admin</div><div class="user-role">System User</div></div>
+                </div>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search records...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-btn"><i class="fa-regular fa-bell"></i><span class="badge-dot"></span></button>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1><i class="fa-solid fa-cloud-arrow-up" style="color:var(--primary);margin-right:8px;"></i> Upload Documents</h1>
+                <p>Drop your scanned PDF land record files below for OCR processing</p>
+            </div>
+
+            <div class="card" style="max-width: 680px; margin: 0 auto;">
+                <!-- Drop Zone -->
+                <div class="upload-zone" id="drop-zone">
+                    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <h3>Drag & Drop PDF Files Here</h3>
+                    <p>or <span class="browse-link">browse your files</span></p>
+                    <span class="file-types">Supported: PDF files only · Max 50MB per file</span>
+                    <input type="file" id="file-input" accept=".pdf" multiple>
+                </div>
+
+                <!-- File List -->
+                <div class="file-list" id="file-list"></div>
+
+                <!-- Upload Button -->
+                <div class="upload-actions" id="upload-btn-wrapper" style="display:none;">
+                    <button class="btn btn-primary" id="upload-btn">
+                        <i class="fa-solid fa-bolt"></i> Process Files with OCR
+                    </button>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>LandScan — OCR-Based Land Record Digitization & Mapping System &copy; 2024</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Processing Overlay -->
+    <div class="processing-overlay" id="processing-overlay">
+        <div class="processing-modal">
+            <div class="spinner"></div>
+            <h3 id="processing-title">Processing your files...</h3>
+            <p id="processing-subtitle">This may take a moment depending on file size</p>
+            <ul class="processing-steps" id="processing-steps">
+                <li id="step-upload" class="active"><i class="fa-solid fa-spinner fa-spin"></i> Uploading files...</li>
+                <li id="step-convert"><i class="fa-solid fa-circle"></i> Converting PDF to images...</li>
+                <li id="step-ocr"><i class="fa-solid fa-circle"></i> Running OCR extraction...</li>
+                <li id="step-parse"><i class="fa-solid fa-circle"></i> Parsing extracted text...</li>
+                <li id="step-store"><i class="fa-solid fa-circle"></i> Storing in database...</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/upload.js"></script>
+</body>
+</html>

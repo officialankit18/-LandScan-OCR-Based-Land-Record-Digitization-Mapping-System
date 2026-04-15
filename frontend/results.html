@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View OCR extraction results and land plot locations on an interactive map.">
+    <title>Results — LandScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <span class="brand-text">LandScan</span>
+            </div>
+            <div class="sidebar-label">Main Menu</div>
+            <nav class="sidebar-nav">
+                <a href="/"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                <a href="/upload"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</a>
+                <a href="/results" class="active"><i class="fa-solid fa-file-lines"></i> Results</a>
+                <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/analytics"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+                <a href="/settings"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">LS</div>
+                    <div><div class="user-name">Admin</div><div class="user-role">System User</div></div>
+                </div>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search records...">
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-btn"><i class="fa-regular fa-bell"></i><span class="badge-dot"></span></button>
+                <div class="header-avatar">A</div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <div>
+                    <h1><i class="fa-solid fa-file-lines" style="color:var(--primary);margin-right:8px;"></i> Extraction Results</h1>
+                    <p id="results-subtitle">Processing complete — view extracted data and map below</p>
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-outline btn-sm" id="btn-export-csv" style="display:none;">
+                        <i class="fa-solid fa-file-csv"></i> Export CSV
+                    </button>
+                    <a href="/upload" class="btn btn-primary btn-sm" id="btn-upload-more">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Upload More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="metrics-row" id="metrics-row"></div>
+
+            <!-- Map -->
+            <div class="card" style="padding:0; overflow:hidden; margin-bottom:24px;">
+                <div class="map-wrapper" style="border:none; box-shadow:none; margin:0;">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div id="results-container"></div>
+
+            <!-- Raw Text -->
+            <div class="card" id="raw-text-section" style="margin-top:20px; display:none;">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-code"></i> Raw OCR Text</h3>
+                </div>
+                <div class="raw-text-box" id="raw-text"></div>
+            </div>
+
+            <!-- Actions -->
+            <div style="display:flex; justify-content:center; gap:12px; margin-top:24px;">
+                <a href="/upload" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Upload More Files</a>
+                <a href="/history" class="btn btn-outline"><i class="fa-solid fa-clock-rotate-left"></i> View All Records</a>
+            </div>
+
+            <footer class="footer">
+                <p>LandScan — OCR-Based Land Record Digitization & Mapping System &copy; 2024</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/results.js"></script>
+</body>
+</html>
